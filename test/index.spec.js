@@ -1,22 +1,16 @@
-import { validarRuta } from "../src/md-links/index.js";
+import { convertPathRelativeToAbsolute, readDirectory } from "..\\src\\index.js";
 
-// import { convertirAbsoluta } from '../src/md-links/main'
-
-describe('validarRuta', () => {
+describe('convertPathRelativeToAbsolute', () => {
   it('Debería ser una función', () => {
-    expect(typeof validarRuta).toBe('function');
+    expect(typeof convertPathRelativeToAbsolute).toBe('function');
   })
-  it('Deberia retornar true cuando la ruta es absoluta', () => {
-    expect(validarRuta('C:/Users/USER T430/Documents/Project/LIM008-fe-md-links/test/index.spec.js')).toBe(true)
-  })
-  it('Deberia retornar false cuando la ruta es relativa', () => {
-    expect(validarRuta('../test/index.spec.js')).toBe(false)
-  })
+  it('Debería retornar una ruta absoluta a partir de una ruta relativa', () => {
+    expect(convertPathRelativeToAbsolute('..\\LIM008-fe-md-links')).toBe('C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links');
+  });
 })
 
-
-// describe('convertirAbsoluta', () => {
-//   it('Debería ser una función', () => {
-//     expect(typeof convertirAbsoluta).toBe('function');
-//   })
-// })
+describe('readDirectory', () => {
+  it('Debería ser una función', () => {
+    expect(typeof readDirectory).toBe('function');
+  })
+})
