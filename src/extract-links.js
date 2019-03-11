@@ -1,7 +1,7 @@
 const fs = require('fs');
 const marked = require('marked');
 
-const extractLinks = (array) => {
+export const extractLinks = (array) => {
 	let linkArray = [];
 	array.forEach((file) => {
 		const readFiles = fs.readFileSync(file, 'utf-8');
@@ -14,9 +14,10 @@ const extractLinks = (array) => {
 	return linkArray;
 };
 
-const mdFilePathsArray =
-	['C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\lalala.md',
-		'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\Readmetest.md',
-		'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\README.md'];
+// const mdFilePathsArray =
+//   ['C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\lalala.md',
+//     'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\Readmetest.md',
+// 		'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\README.md'];
+		
+// console.log(extractLinks(mdFilePathsArray));
 
-console.log(extractLinks(mdFilePathsArray));

@@ -41,4 +41,5 @@
 - Presentamos [firebase-mock](https://github.com/soumak77/firebase-mock) y
   [mock-cloud-firestore](https://github.com/mikkopaderes/mock-cloud-firestore).
 - Realizamos configuracion de los mocks
-- Corremos los test y alcanzamos la cobertura y tests pasan
+- Corremos los test y alcanzamos la cobertura y tests pasan.
+  [mock-cloud-test](https://github.com/mikkopaderes/test).
