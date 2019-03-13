@@ -56,6 +56,8 @@ describe('validate', () => {
     expect(typeof validateLinks).toEqual('function')
   })
   it('Debería retornar el arreglo de links ingresado con las nuevas propiedades status y statusText', () => {
-    expect(validateLinks(linkArray)).toEqual(linksArrayValidator)
+    return validateLinks(linkArray).then(linkArray => {
+      expect(linkArray).toEqual(linksArrayValidator);
+    });  
   })
 })
