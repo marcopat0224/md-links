@@ -1,17 +1,16 @@
 import { convertPathRelativeToAbsolute, readDirectory } from "../src/path";
-export {filePathsArray};
 
 const relativePath = '..\\LIM008-fe-md-links\\test\\probando-mdlinks';
-const absolutePath = 'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks';
-const filePathsArray =
-  ['C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\Creando una Red Social.docx',
-    'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\eeevaaa.txt',
-    'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\lalala.md',
-    'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\bookmarks_24_4_18.html',
-    'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\gallery-of-40-cine-backgrounds-wallpapers-wpbg-collection.jpg',
-    'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\Readmetest.md',
-    'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\PROYECTO UX.txt',
-    'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\README.md'];
+const absolutePath = `${process.cwd()}\\test\\probando-mdlinks`;
+export const filePathsArray =
+  [`${process.cwd()}\\test\\probando-mdlinks\\Creando una Red Social.docx`,
+    `${process.cwd()}\\test\\probando-mdlinks\\eeevaaa.txt`,
+    `${process.cwd()}\\test\\probando-mdlinks\\lalala.md`,
+    `${process.cwd()}\\test\\probando-mdlinks\\more\\bookmarks_24_4_18.html`,
+    `${process.cwd()}\\test\\probando-mdlinks\\more\\gallery-of-40-cine-backgrounds-wallpapers-wpbg-collection.jpg`,
+    `${process.cwd()}\\test\\probando-mdlinks\\more\\Readmetest.md`,
+    `${process.cwd()}\\test\\probando-mdlinks\\PROYECTO UX.txt`,
+    `${process.cwd()}\\test\\probando-mdlinks\\README.md`];
 
 describe('convertPathRelativeToAbsolute', () => {
   it('Debería ser una función', () => {
