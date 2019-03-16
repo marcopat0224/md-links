@@ -1,69 +1,56 @@
 const fetch = require('node-fetch');
-
-export const validateLinks = linkArray => {
-  const linksArrayValidator = linkArray.map(link => {
-    return new Promise(resolve => {
-      fetch(link.href)
-        .then(response => {
-          if (response.status >= 200 && response.status < 400) {
-            link.status = response.status;
-            link.statusText = 'OK';
-            resolve(link);
-          } else {
-            link.status = response.status;
-            link.statusText = 'Fail';
-            resolve(link);
-          }
-        })
-        .catch(error => {
-          link.status = '';
-          link.statusText = 'Not Found';
-          resolve(link);
-        });
-    });
-  });
-  return Promise.all(linksArrayValidator);
+/**
+ * @function {validar} validateLink
+ * @param {un array de objetos} arr
+ * @returns {un array de objetos con los links validades con propiedades satus, statusText} 
+ */
+export const validateLink = (arr) => {
+  const linkValidate = arr.map(links => new Promise((resolve, reject) => {
+    return fetch(links.href)                                       
+      .then(response => {
+        if (response.status >= 200 && response.status < 400) {
+          links.status = response.status;
+          links.statusText = response.statusText;
+          resolve(links); 
+        } else {
+          links.status = response.statusText;
+          links.statusText = 'Not Fail';
+          resolve(links);
+        }
+      }).catch(() => { 
+        links.status = '';
+        links.statusText = 'Not Link';
+        resolve(links);
+      });
+  }));
+  return Promise.all(linkValidate);
 };
 
-// const linkArray =
-//   [{
-//     href: 'https://en.wikipedia.org/wiki/Caesar_cipher',
-//     text: 'cifrado César',
-//     file:
-//       'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\lalala.md'
-//   },
-//   {
-//     href: 'mailto:front@end.la',
-//     text: 'front@end.la',
-//     file:
-//       'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\Readmetest.md'
-//   },
-//   {
-//     href: 'https://github.com/soumak77/firebase-mock',
-//     text: 'firebase-mock',
-//     file:
-//       'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\Readmetest.md'
-//   },
-//   {
-//     href: 'https://github.com/mikkopaderes/mock-cloud-firestore',
-//     text: 'mock-cloud-firestore',
-//     file:
-//       'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\Readmetest.md'
-//   },
-//   {
-//     href: 'https://github.com/mikkopaderes/test',
-//     text: 'mock-cloud-test',
-//     file:
-//       'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\more\\Readmetest.md'
-//   },
-//   {
-//     href:
-//       'https://betsyvies.github.io/2018-2-SPA/src/template-string/#/',
-//     text: 'Aquí puedes ver la demo',
-//     file:
-//       'C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test\\probando-mdlinks\\README.md'
-//   }]
+/** 
+ * @function {uniqueLinks} 
+ * @param {un array de objetos} arr
+ * @returns {la cantidad de los links unicos } 
+ */
+export const uniqueLinks = (arr) => { 
+  const unique = [...new Set(arr.map((link) => link.href))];
+  return unique.length;
+};
+/**
+ * @function {totalLinks} 
+ * @param {un array de objetos} arr
+ * @returns {la cantidad de los links totales} 
+ */
+export const totalLinks = (arr) => { 
+  const total = arr.length;
+  return total;
+};
 
-// validateLinks(linkArray)
-//   .then(result => console.log(result))
-//   .catch(err => err);
+/**
+ * @function {brokenLinks} 
+ * @param {un array de objetos} arr
+ * @returns {la cantidad de los links rotos} 
+ */
+export const brokenLinks = (arr) => {
+  const broken = arr.filter(link => link.status === '' || link.status === 'Not Found');
+  return broken.length;
+};

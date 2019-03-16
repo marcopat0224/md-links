@@ -1,19 +1,27 @@
 {
-  "name": "social-network",
+  "name": "md-links",
   "version": "1.0.0",
-  "description": "Social Network @ Laboratoria",
-  "main": "src/index.html",
+  "description": "md-links",
+  "main": "lib/md-links/md-links.js",
   "keywords": [
     "javascript",
     "npm",
     "jest"
   ],
   "license": "MIT",
+  "bin": {
+    "md-links": "lib/md-links/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuriquezada/md-links.git"
+  },
   "scripts": {
     "eslint": "eslint --ext .js src/ test/",
     "test": "jest --coverage",
     "build": "babel src -d lib"
   },
+
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
