@@ -1,8 +1,7 @@
-import { validateLink, uniqueLinks, totalLinks, brokenLinks } from '../src/validate.js';
+import { validateLink } from '../src/validate.js';
 import { linkArray } from './extract-links.spec.js';
 
-
-const arrObjLinks = [
+export const linksStatusArray = [
   {
     href: 'https://en.wikipedia.org/wiki/Caesar_cipher',
     text: 'cifrado César',
@@ -54,40 +53,13 @@ const arrObjLinks = [
   }
 ];
 
-
 describe('validateLink', () => {
-  it('deberia retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', (done) => {
+  it('Debería retornar una promesa array de objetos con todos los liks validados con propiedades haref,file,text,status,statusText', (done) => {
     return validateLink(linkArray)
       .then(res => {
-        expect(arrObjLinks).toEqual(res);
+        expect(linksStatusArray).toEqual(res);
         done();
       })
       .catch((err) => err);
-  });
-});
-
-
-describe('uniqueLinks', () => {
-  it('deberia ser funcion', () => {
-    expect(typeof uniqueLinks).toBe('function');
-  });
-  it('debería retornar la cantidad de los links unicos', () => {
-    return expect(uniqueLinks(arrObjLinks)).toEqual(6);
-  });
-});
-describe('totalLinks', () => {
-  it('deberia ser funcion', () => {
-    expect(typeof totalLinks).toBe('function');
-  });
-  it('debería retornar la cantidad de los links unicos', () => {
-    return expect(totalLinks(arrObjLinks)).toEqual(6);
-  });
-});
-describe('brokenLinks', () => {
-  it('deberia ser funcion', () => {
-    expect(typeof brokenLinks).toBe('function');
-  });
-  it('debería retornar la cantidad de links rotos', () => {
-    return expect(brokenLinks(arrObjLinks)).toEqual(2);
   });
 });
