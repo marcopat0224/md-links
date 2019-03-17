@@ -1,21 +1,21 @@
-import { isPathAbsolute, convertPathAabsolute, openAdirectory } from '../functions/path.js';
-import { arrRoutesMd, extrackLinks } from '../functions/arr.js';
-import { validateLink} from '../functions/options.js';
-
-import { convertPathRelativeToAbsolute, readDirectory } from '../path.js';
+import { isPathAbsolute, convertPathRelativeToAbsolute, readDirectory } from '../path.js';
 import { filterMdFiles } from '../extract-md.js';
 import { extractLinks } from '../extract-links.js';
+import { validateLink } from '../validate.js';
+import { log } from 'util';
 
+const relativePath = '..\\test\\probando-mdlinks';
 
-export const mdLinks = (route, option) => { 
-  return new Promise((resolve, reject) => {              
+export const mdLinks = (route, option) => {
+  return new Promise((resolve, reject) => {
     let rutaAbsoluta;
     if (isPathAbsolute(route) === false) {
-      rutaAbsoluta = convertPathAabsolute(route);  
+      rutaAbsoluta = convertPathRelativeToAbsolute(route);
     }
-    const arrFiles = openAdirectory(route);
-    const arrMd = arrRoutesMd(arrFiles);
-    const arrLinks = extrackLinks(arrMd);
+    
+    const arrFiles = readDirectory(route);
+    const arrMd = filterMdFiles(arrFiles);
+    const arrLinks = extractLinks(arrMd);
     if (option.validate === true) {
       validateLink(arrLinks)
         .then(response => {
@@ -24,8 +24,15 @@ export const mdLinks = (route, option) => {
         .catch(err => {
           resolve(err);
         });
-    } else { 
+    } else {
       resolve(arrLinks);
     }
   });
 };
+
+// mdLinks(relativePath, true)
+//   .then(result => console.log(result))
+//   .catch(err => err);
+
+// mdLinks(relativePath, { validate: true })
+//   .then(res => console.log(res));

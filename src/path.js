@@ -1,9 +1,18 @@
+// const relativePath = '..\\LIM008-fe-md-links\\test\\probando-mdlinks';
+
 const path = require('path');
 const fs = require('fs');
+
+export const isPathAbsolute = (route) => {
+  const isAbsolute = path.isAbsolute(route);
+  return isAbsolute;
+};
+// console.log(isPathAbsolute(relativePath));
 
 export const convertPathRelativeToAbsolute = (ruta) => {
   return path.resolve(ruta);
 }
+// console.log(convertPathRelativeToAbsolute(relativePath));
 
 export const readDirectory = ruta => {
   let filePathsArray = [];
@@ -19,6 +28,7 @@ export const readDirectory = ruta => {
   });
   return filePathsArray;
 }
+// console.log(readDirectory(convertPathRelativeToAbsolute(relativePath)));
 
 
 
