@@ -1,4 +1,6 @@
 
+// import { linkArray } from '../test/extract-links.spec.js';
+
 const fetch = require('node-fetch');
 
 export const validateLink = (arr) => {
@@ -22,45 +24,6 @@ export const validateLink = (arr) => {
   }));
   return Promise.all(validatedLinksArray);
 };
-
-// const linkArray =
-//   [{
-//     href: 'https://en.wikipedia.org/wiki/Caesar_cipher',
-//     text: 'cifrado César',
-//     file:
-//       `${process.cwd()}\\test\\probando-mdlinks\\lalala.md`
-//   },
-//   {
-//     href: 'mailto:front@end.la',
-//     text: 'front@end.la',
-//     file:
-//       `${process.cwd()}\\test\\probando-mdlinks\\more\\Readmetest.md`
-//   },
-//   {
-//     href: 'https://github.com/soumak77/firebase-mock',
-//     text: 'firebase-mock',
-//     file:
-//       `${process.cwd()}\\test\\probando-mdlinks\\more\\Readmetest.md`
-//   },
-//   {
-//     href: 'https://github.com/mikkopaderes/mock-cloud-firestore',
-//     text: 'mock-cloud-firestore',
-//     file:
-//       `${process.cwd()}\\test\\probando-mdlinks\\more\\Readmetest.md`
-//   },
-//   {
-//     href: 'https://github.com/mikkopaderes/test',
-//     text: 'mock-cloud-test',
-//     file:
-//       `${process.cwd()}\\test\\probando-mdlinks\\more\\Readmetest.md`
-//   },
-//   {
-//     href:
-//       'https://betsyvies.github.io/2018-2-SPA/src/template-string/#/',
-//     text: 'Aquí puedes ver la demo',
-//     file:
-//       `${process.cwd()}\\test\\probando-mdlinks\\README.md`
-//   }]
 
 // validateLink(linkArray)
 //   .then(result => console.log(result))

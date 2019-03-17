@@ -5,7 +5,7 @@ import { validateLink} from '../functions/options.js';
 import { convertPathRelativeToAbsolute, readDirectory } from '../path.js';
 import { filterMdFiles } from '../extract-md.js';
 import { extractLinks } from '../extract-links.js';
-validateLink
+
 
 export const mdLinks = (route, option) => { 
   return new Promise((resolve, reject) => {              
