@@ -1,14 +1,14 @@
-export const totalLinks = (arr) => {
-  const total = arr.length;
+export const totalLinks = (array) => {
+  const total = array.length;
   return total;
 };
 
-export const uniqueLinks = (arr) => {
-  const unique = [...new Set(arr.map((link) => link.href))];
+export const uniqueLinks = (array) => {
+  const unique = [...new Set(array.map((link) => link.href))];
   return unique.length;
 };
 
-export const brokenLinks = (arr) => {
-  const broken = arr.filter(link => link.status === '' || link.status === 'Not Found');
+export const brokenLinks = (array) => {
+  const broken = array.filter(link => link.status === '' || link.statusText === 'Fail');
   return broken.length;
 };
