@@ -117,6 +117,14 @@ describe('mdLinks', () => {
       });
   });
 
+  it('retorna una promesa que resuelva a un array de objetos que contengan propiedades ya la opcion de validate', () => {
+    return mdLinks(relativePath, { validate: true })
+      .then((res) => {
+        expect(res).toEqual(validate);
+      });
+  });
+
+
   // it('debe retornar una promesa con el array de objetos de links', () => {
   //   return mdLinks(absolutePath, '')
   //     .then(res => {

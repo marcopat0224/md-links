@@ -2,7 +2,6 @@ import { isPathAbsolute, convertPathRelativeToAbsolute, readDirectory } from '..
 import { filterMdFiles } from '../extract-md.js';
 import { extractLinks } from '../extract-links.js';
 import { validateLink } from '../validate.js';
-import { log } from 'util';
 
 const relativePath = '..\\test\\probando-mdlinks';
 
@@ -11,8 +10,10 @@ export const mdLinks = (route, option) => {
     let rutaAbsoluta;
     if (isPathAbsolute(route) === false) {
       rutaAbsoluta = convertPathRelativeToAbsolute(route);
-    }
-    
+    } else {
+      rutaAbsoluta = route;
+    };
+
     const arrFiles = readDirectory(route);
     const arrMd = filterMdFiles(arrFiles);
     const arrLinks = extractLinks(arrMd);
