@@ -19,5 +19,5 @@ export const mdLinks = (path, options) => {
   });
 };
 
-// mdLinks('..\\..\\test\\probando-mdlinks', {validate: true})
+// mdLinks('..\\..\\test\\probando-mdlinks', {validate: false})
 //   .then(res => console.log(res));

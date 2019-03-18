@@ -1,40 +1,38 @@
 #!/usr/bin/env node
+// const mdLinks = require('./md-links.js');
+// import {statsLinks, statLinksBroken} from './models/stats.js';
+import { totalLinks, brokenLinks, uniqueLinks } from '../stats.js';
 import { mdLinks } from './md-links.js';
-import { totalLinks, uniqueLinks, brokenLinks } from '../stats.js';
 
-const program = require('commander');
+const path = process.argv[2];
+const options = process.argv[3];
+const status = process.argv[4];
 
-program 
-  . arguments('path')
-  . option('-v, --validate', 'validar los links rotos') 
-  . option('-s, --stats', 'calcula la stats de los links') 
-  . action(mdLinks)
-  . parse(process.argv);
-
-const option = {
-  validate: program.validate,
-  stats: program.stats
-};
-
-const route = program.args[0];
-
-if (!route) {
-  console.log('Debes ingresar una ruta');
-} else { 
-  mdLinks(route, option)
-    .then(arrLinks => { 
-      if (arrLinks.length === 0) {
-        console.log('Este archivo no tiene links para mostrar');
-      } else if (option.validate && option.stats) {
-        console.log(`Total: ${totalLinks(arrLinks)} \nUnique: ${uniqueLinks(arrLinks)}  \nBroquen: ${brokenLinks(arrLinks)}`);
-      } else if (option.stats) {
-        console.log(`Total: ${totalLinks(arrLinks)}  \nUnique: ${uniqueLinks(arrLinks)}`);
-      } else if (option.validate) {
-        arrLinks.forEach(element => 
-          console.log(`${element.file}  ${element.href}  ${element.status}  ${element.statusText}  ${element.text}`));
-      } else {
-        arrLinks.forEach(element => 
-          console.log(`${element.file}  ${element.href}  ${element.text}`));
-      }
-    }).catch(err => (err));
-};
+if (options === '--validate' && status === '--stats' || status === '--stats' && options === '--validate' || options === '--s' && status === '--v' || options === '--v' && status === '--s') {
+  mdLinks(path, { validate: true })
+    .then(res => {
+      console.log(`Total: ${totalLinks(res)}`);
+      console.log(`Unique: ${uniqueLinks(res)}`);
+      console.log(`Broken: ${brokenLinks(res)}`);
+    })
+    .catch(error => console.log(error));
+} else if (options === '--validate' || options === '--v') {
+  mdLinks(path, { validate: true })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(error => console.log(error));
+} else if (options === '--stats' || options === '--s') {
+  mdLinks(path, { validate: true })
+    .then(res => {
+      console.log(`Total: ${totalLinks(res)}`);
+      console.log(`Unique: ${uniqueLinks(res)}`);
+    })
+    .catch(error => console.log(error));
+} else {
+  mdLinks(path, { validate: false })
+  .then(res => {
+    console.log(res);
+  })
+    .catch(err => console.log(err));
+}
