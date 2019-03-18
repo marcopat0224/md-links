@@ -5,9 +5,10 @@ La librería `md-links` es una herramienta que lee y analiza archivos con extens
 
 ## Instalación
 
-El módulo puede importarse en otros scripts de Node.js a través de:
+Para instalar la librería se ejecuta el siguiente comando en la consola:
 
-`require('md-links')`
+![instalacion](img/instalación.jpg)
+
 ### JavaScript API
 
 #### `mdLinks(path, options)`

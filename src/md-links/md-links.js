@@ -18,6 +18,7 @@ export const mdLinks = (path, options) => {
     } 
   });
 };
+// mdLinks('C:\\Users\\USER T430\\Documents\\Project\\LIM008-fe-md-links\\test',{validate:false}).then(resp=>console.log(resp))
 
 // mdLinks('..\\..\\test\\probando-mdlinks', {validate: false})
 //   .then(res => console.log(res));
