@@ -1,4 +1,4 @@
-import {isPathAbsolute, convertPathRelativeToAbsolute, readDirectory } from "../src/path";
+import {evaluatePath, convertPathRelativeToAbsolute, readDirectory } from "../src/path";
 
 const relativePath = '..\\LIM008-fe-md-links\\test\\probando-mdlinks';
 const absolutePath = `${process.cwd()}\\test\\probando-mdlinks`;
@@ -12,15 +12,15 @@ export const filePathsArray =
   `${process.cwd()}\\test\\probando-mdlinks\\PROYECTO UX.txt`,
   `${process.cwd()}\\test\\probando-mdlinks\\README.md`];
 
-describe('isPhatAbsolute', () => {
+describe('evaluatePath', () => {
   it('deberia ser una funcion', () => {
-    expect(typeof isPathAbsolute).toBe('function');
+    expect(typeof evaluatePath).toBe('function');
   });
   it('deberia retornar true si es una ruta absoluta', () => {
-    return expect(isPathAbsolute(absolutePath)).toBe(true);
+    return expect(evaluatePath(absolutePath)).toBe(true);
   });
   it('deberia retornar false si no es una ruta absoluta', () => {
-    return expect(isPathAbsolute(relativePath)).toBe(false);
+    return expect(evaluatePath(relativePath)).toBe(false);
   });
 });
 

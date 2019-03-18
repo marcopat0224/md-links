@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { mdLinks } from './index.js';
-import { totalLinks, uniqueLinks, brokenLinks } from '../functions/options.js';
+import { mdLinks } from './md-links.js';
+import { totalLinks, uniqueLinks, brokenLinks } from '../stats.js';
 
 const program = require('commander');
 
@@ -24,7 +24,7 @@ if (!route) {
   mdLinks(route, option)
     .then(arrLinks => { 
       if (arrLinks.length === 0) {
-        console.log('Este archivo no tiene links que mostrar');
+        console.log('Este archivo no tiene links para mostrar');
       } else if (option.validate && option.stats) {
         console.log(`Total: ${totalLinks(arrLinks)} \nUnique: ${uniqueLinks(arrLinks)}  \nBroquen: ${brokenLinks(arrLinks)}`);
       } else if (option.stats) {

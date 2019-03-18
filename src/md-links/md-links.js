@@ -1,11 +1,11 @@
-import { isPathAbsolute, convertPathRelativeToAbsolute, readDirectory } from '../path.js';
+import { evaluatePath, convertPathRelativeToAbsolute, readDirectory } from '../path.js';
 import { filterMdFiles } from '../extract-md.js';
 import { extractLinks } from '../extract-links.js';
 import { validateLink } from '../validate.js';
 
 export const mdLinks = (path, options) => {
   let pathAbs;
-  if (!isPathAbsolute(path)) {
+  if (!evaluatePath(path)) {
     pathAbs = convertPathRelativeToAbsolute(path);
   } else {
     pathAbs = path;
@@ -19,5 +19,5 @@ export const mdLinks = (path, options) => {
   });
 };
 
-// mdLinks('test\\pruebastest', {validate: true})
+// mdLinks('..\\..\\test\\probando-mdlinks', {validate: true})
 //   .then(res => console.log(res));

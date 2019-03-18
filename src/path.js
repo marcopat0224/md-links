@@ -3,11 +3,11 @@
 const path = require('path');
 const fs = require('fs');
 
-export const isPathAbsolute = (route) => {
+export const evaluatePath = (route) => {
   const isAbsolute = path.isAbsolute(route);
   return isAbsolute;
 };
-// console.log(isPathAbsolute(relativePath));
+// console.log(evaluatePath(relativePath));
 
 export const convertPathRelativeToAbsolute = (ruta) => {
   return path.resolve(ruta);
